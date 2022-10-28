@@ -102,12 +102,11 @@ You can update your custom capabilities in test scripts. In this sample project,
         "platformVersion": "11",
         "isRealMobile": True,
         "platformName": "roku",
-        "build": "roku sse test",
+        "build": "Roku Sample Test",
         "app": "APP_URL"          #Add app url here
         "video": True,
         "visual": True,
-        "devicelog": True,
-        "privateCloud": True
+        "devicelog": True
     }
 ```
 
