@@ -44,6 +44,11 @@ Clone the LambdaTest’s [LT-appium-rokutv](https://github.com/LambdaTest/LT-app
 git clone https://github.com/LambdaTest/LT-appium-rokutv
 cd LT-appium-rokutv
 ```
+:::tip 
+
+> You can find LambdaTest's roku pyton client for your reference at [lt-python-roku-client](https://github.com/LambdaTest/lt-python-roku-client)
+
+:::
 
 ### Setting Up Your Authentication
 
@@ -98,7 +103,7 @@ You can update your custom capabilities in test scripts. In this sample project,
 
 ```python title="main.py"
     caps = {
-        "deviceName": "Roku Express",
+        "deviceName": "Roku Express",     #We also support "Roku Ultra"
         "platformVersion": "11",
         "isRealMobile": True,
         "platformName": "roku",
