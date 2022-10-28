@@ -43,7 +43,7 @@ if __name__ == "__main__":
     url = "http://"+username+":"+accessToken+"@"+hub_url
     
     caps = {
-        "deviceName": "Roku Express",
+        "deviceName": "Roku Express",       #We also support "Roku Ultra"
         "platformVersion": "11",
         "isRealMobile": True,
         "platformName": "roku",
