@@ -103,7 +103,7 @@ You can update your custom capabilities in test scripts. In this sample project,
 
 ```python title="main.py"
     caps = {
-        "deviceName": "Roku Express",
+        "deviceName": "Roku Express",     #We also support "Roku Ultra"
         "platformVersion": "11",
         "isRealMobile": True,
         "platformName": "roku",
