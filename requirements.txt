@@ -1,0 +1,2 @@
+Appium-Python-Client==2.2.0
+typing_extensions==4.1.1
