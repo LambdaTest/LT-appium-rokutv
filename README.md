@@ -83,18 +83,17 @@ Once you are done with the above-mentioned steps, you can initiate your first ro
 You can update your custom capabilities in test scripts. In this sample project, we are passing platform name, platform version, device name and app url (generated earlier) along with other capabilities like build name and test name via capabilities object. The capabilities object in the sample code are defined as:
 
 ```python title="sample_test.py"
-    caps = {
+    desired_caps = {
         "automationName": "Roku",
         "deviceName" : "Roku Express",    #We also support "Roku Ultra"
         "platformVersion" :  "11",
         "platformName" : "roku",
         "isRealMobile":True,
-        "build": "Roku Testing",
+        "build": "Roku Sample Test",
         "app":"APP_URL",                  #Enter app url here
         "devicelog": True,
         "privateCloud": True,
-        "visual" : True,
-        "idleTimeout": 1800
+        "visual" : True
     }
 ```
 

@@ -11,15 +11,12 @@ def getCaps():
        "platformVersion" :  "11",
        "platformName" : "roku",
        "isRealMobile":True,
-       "build": "Roku Testing",
+       "build": "Roku Sample Test",
        "app":"APP_URL",     #Enter app url here
-       "network": False,
        "devicelog": True,
        "privateCloud": True,
-       "visual" : True,
-       "idleTimeout": 1800,
+       "visual" : True
    }
-
 
    return desired_caps
 
@@ -42,13 +39,13 @@ def runTest():
 
 
    # capabilities
-   desired_cap = getCaps()
+   desired_caps = getCaps()
    url = "https://"+username+":"+accesskey+"@"+gridUrl
 
 
    print("Initiating remote driver:")
    driver = webdriver.Remote(
-       options=UiAutomator2Options().load_capabilities(desired_cap),
+       options=UiAutomator2Options().load_capabilities(desired_caps),
        command_executor= url
    )
 
