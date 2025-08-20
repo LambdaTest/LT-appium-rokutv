@@ -76,7 +76,7 @@ curl -u "YOUR_LAMBDATEST_USERNAME:YOUR_LAMBDATEST_ACCESS_KEY" -X POST "https://m
 
 Once you are done with the above-mentioned steps, you can initiate your first rokutv test on LambdaTest.
 
-**Test Scenario:** Check out [sample_test.py](https://github.com/LambdaTest/LT-appium-rokutv/blob/master/main.py) file to view the sample test script. 
+**Test Scenario:** Check out the [sample_test.py](https://github.com/LambdaTest/LT-appium-rokutv/blob/master/sample_test.py) file to view the sample test script. 
 
 ### Configuring Your Test Capabilities
 
@@ -85,12 +85,12 @@ You can update your custom capabilities in test scripts. In this sample project,
 ```python title="sample_test.py"
     desired_caps = {
         "automationName": "Roku",
-        "deviceName" : "Roku Express",    #We also support "Roku Ultra"
+        "deviceName" : "Roku Express",    # We also support "Roku Ultra"
         "platformVersion" :  "11",
         "platformName" : "roku",
         "isRealMobile":True,
         "build": "Roku Sample Test",
-        "app":"APP_URL",                  #Enter app url here
+        "app":"APP_URL",                  # Enter app url here
         "devicelog": True,
         "privateCloud": True,
         "visual" : True
@@ -121,13 +121,11 @@ python main.py
 
 > [!TIP]
 > If you fail to run the tests, try creating virtual env and installing the dependencies in that environment to run the tests.
-> Creating and activating a virtual environment
-
-```
-pip3 install virtualenv
-virtualenv venv
-source venv/bin/activate
-```
+> ```
+> pip3 install virtualenv
+> virtualenv venv
+> source venv/bin/activate
+> ```
 
 Your test results would be displayed on the test console (or command-line interface if you are using terminal/cmd) and on the [LambdaTest App Automation Dashboard](https://appautomation.lambdatest.com/build?utm_source=github&utm_medium=repo&utm_campaign=LT-appium-rokutv).
 
