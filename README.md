@@ -29,26 +29,8 @@ _Learn the basics of [Appium testing on the LambdaTest platform](https://www.lam
 - [Run Your First Test](#run-your-first-test)
 - [Executing The Tests](#executing-the-tests)
 
+
 ## Pre-requisites
-
-Before you can start performing App automation testing with Appium, you would need to follow these steps:
-
-- Install the latest python build from the [official website](https://www.python.org/downloads/). We recommend using the latest version.
-- Make sure **pip** is installed in your system. You can install **pip** from [here](https://pip.pypa.io/en/stable/installation/).
-
-### Clone The Sample Project
-
-Clone the LambdaTest’s [LT-appium-rokutv](https://github.com/LambdaTest/LT-appium-rokutv) and navigate to the code directory as shown below:
-
-```bash
-git clone https://github.com/LambdaTest/LT-appium-rokutv
-cd LT-appium-rokutv
-```
-:::tip 
-
-> You can find LambdaTest's roku pyton client for your reference at [lt-python-roku-client](https://github.com/LambdaTest/lt-python-roku-client)
-
-:::
 
 ### Setting Up Your Authentication
 
@@ -72,7 +54,7 @@ set LT_ACCESS_KEY=YOUR_LAMBDATEST_ACCESS_KEY
 
 ### Upload Your Application
 
-Upload your **Roku TV** application (.apk file) to the LambdaTest servers using our **REST API**. You need to provide your **Username** and **AccessKey** in the format `Username:AccessKey` in the **cURL** command for authentication. Make sure to add the path of the **appFile** in the cURL request. Here is an example cURL request to upload your app using our REST API:
+Upload your **Roku TV** application (.zip file) to the LambdaTest servers using our **REST API**. You need to provide your **Username** and **AccessKey** in the format `Username:AccessKey` in the **cURL** command for authentication. Make sure to add the path of the **appFile** in the cURL request. Here is an example cURL request to upload your app using our REST API:
 
  **Using App File from System:**
  
@@ -86,32 +68,32 @@ curl -u "YOUR_LAMBDATEST_USERNAME:YOUR_LAMBDATEST_ACCESS_KEY" -X POST "https://m
 curl -u "YOUR_LAMBDATEST_USERNAME:YOUR_LAMBDATEST_ACCESS_KEY" -X POST "https://manual-api.lambdatest.com/app/upload/realDevice" -F "url=:https://prod-mobile-artefacts.lambdatest.com/assets/docs/roku-sample-app.zip" -F "name=roku-sample-app"
 ```
 
-**Tip:**
-
-- If you do not have any **.apk** file, you can run your sample tests on LambdaTest by using our sample :link: [RokuTV app](https://prod-mobile-artefacts.lambdatest.com/assets/docs/roku-sample-app.zip).
-- Response of above cURL will be a **JSON** object containing the `APP_URL` of the format - <lt://APP123456789123456789> and will be used in the next step
+> [!TIP]
+> - If you do not have any **.zip** file, you can run your sample tests on LambdaTest by using our sample :link: [RokuTV app](https://prod-mobile-artefacts.lambdatest.com/assets/docs/roku-sample-app.zip).
+> - Response of above cURL will be a **JSON** object containing the `APP_URL` of the format - <lt://APP123456789123456789> and will be used in the next step
 
 ## Run Your First Test
 
 Once you are done with the above-mentioned steps, you can initiate your first rokutv test on LambdaTest.
 
-**Test Scenario:** Check out [main.py](https://github.com/LambdaTest/LT-appium-rokutv/blob/master/main.py) file to view the sample test script. 
+**Test Scenario:** Check out the [sample_test.py](https://github.com/LambdaTest/LT-appium-rokutv/blob/master/sample_test.py) file to view the sample test script. 
 
 ### Configuring Your Test Capabilities
 
 You can update your custom capabilities in test scripts. In this sample project, we are passing platform name, platform version, device name and app url (generated earlier) along with other capabilities like build name and test name via capabilities object. The capabilities object in the sample code are defined as:
 
-```python title="main.py"
-    caps = {
-        "deviceName": "Roku Express",     #We also support "Roku Ultra"
-        "platformVersion": "11",
-        "isRealMobile": True,
-        "platformName": "roku",
+```python title="sample_test.py"
+    desired_caps = {
+        "automationName": "Roku",
+        "deviceName" : "Roku Express",    # We also support "Roku Ultra"
+        "platformVersion" :  "11",
+        "platformName" : "roku",
+        "isRealMobile":True,
         "build": "Roku Sample Test",
-        "app": "APP_URL"          #Add app url here
-        "video": True,
-        "visual": True,
-        "devicelog": True
+        "app":"APP_URL",                  # Enter app url here
+        "devicelog": True,
+        "privateCloud": True,
+        "visual" : True
     }
 ```
 
@@ -134,27 +116,40 @@ pip install -r requirements.txt
 python main.py
 ```
 
-:::tip
-
+> [!TIP]
 > If you are unable to run the automation script with the above mentioned commands try **'python3'** command except for **'python'**.
 
-:::
-
-> Your test results would be displayed on the test console (or command-line interface if you are using terminal/cmd) and on the [LambdaTest App Automation Dashboard](https://appautomation.lambdatest.com/build?utm_source=github&utm_medium=repo&utm_campaign=LT-appium-rokutv).
-
+> [!TIP]
 > If you fail to run the tests, try creating virtual env and installing the dependencies in that environment to run the tests.
-> Creating and activating a virtual environment
+> ```
+> pip3 install virtualenv
+> virtualenv venv
+> source venv/bin/activate
+> ```
 
-```
-pip3 install virtualenv
-virtualenv venv
-source venv/bin/activate
-```
+Your test results would be displayed on the test console (or command-line interface if you are using terminal/cmd) and on the [LambdaTest App Automation Dashboard](https://appautomation.lambdatest.com/build?utm_source=github&utm_medium=repo&utm_campaign=LT-appium-rokutv).
+
+## Supported Commands
+
+We utilise the Appium Roku Driver to run tests on Roku via Appium, here's a list of all the commands the driver supports from the project's [README](https://github.com/headspinio/appium-roku-driver?tab=readme-ov-file#roku-commands):
+
+|Command|Parameters|Description|
+|-------|----------|-----------|
+|`roku: pressKey`|`key`|Press the remote key whose value matches `key` (must be one of the [supported key values](https://developer.roku.com/en-ca/docs/developer-program/debugging/external-control-api.md#keypress-key-values) from the Roku documentation). As addressed in the documentation, Roku TVs also support additioanl keys such as `PowerOff` and `PowerOn`. |
+|`roku: deviceInfo`||Get information about the Roku device|
+|`roku: getApps`||Get a list of apps installed on the device. The response will be a list of objects with the following keys: `id`, `type`, `subtype`, `version`, and `name`.|
+|`roku: activeApp`||Get information about the active app, in the same format as `roku: getApps`.|
+|`roku: activateApp`|`appId` (required), `contentId`, `mediaType`|Launch an app with the corresponding `appId`. Optionally include `contentId` and `mediaType` information (with the same properties as described above for the `activateApp` command)|
+|`roku: selectElement`|`elementId` (required) |Moves the focus on a element having locator xpath as `elementId`. If it is unable to focus on the element, the driver will respond with a error.|
+|`roku: playerState`||Get the state of the media player. The data will be returned as a JSON object, corresponding to the information included in the [query/media-player ECP result](https://developer.roku.com/en-ca/docs/developer-program/dev-tools/external-control-api.md#querymedia-player-example)|
+|`roku: deepLink`|`contentId`, `mediaType`|As described in the [Roku dev docs](https://developer.roku.com/en-ca/docs/developer-program/discovery/implementing-deep-linking.md#using-ecp-commands-for-testing-deep-linking), you can deep link into content in the running application using a content ID and media type. For this command, `contentId` is required, and `mediaType` defaults to `movie` and must be one of the [valid media types](https://developer.roku.com/en-ca/docs/developer-program/discovery/implementing-deep-linking.md#mediatype-behavior). Note that this command acts on the currently-running app. If you want to test deep-linking into an app that is not launched, use `activateApp` instead.|
+|`roku: ecpInput`|`params`|This command allows calling the `/input` ECP command directly. An arbitrary set of key/value pairs can be sent in as a JSON object. No url-encoding of the values needs to be done. For example, to represent the parameters in the ECP command `POST /input?acceleration.x=0.0&acceleration.y=0.0&acceleration.z=9.8` from the ECP docs, you would construct a `params` of `{"acceleration.x": "0.0", "acceleration.y": "0.0", "acceleration.z": "9.8"}`|
+
+
 
 ## Additional Links
 
-- [Advanced Configuration for Capabilities](https://www.lambdatest.com/support/docs/desired-capabilities-in-appium/?utm_source=github&utm_medium=repo&utm_campaign=LT-appium-rokutv)
-- [How to test locally hosted apps](https://www.lambdatest.com/support/docs/testing-locally-hosted-pages/?utm_source=github&utm_medium=repo&utm_campaign=LT-appium-rokutv)
+- [Appium Roku Driver](https://github.com/headspinio/appium-roku-driver)
 - [How to integrate LambdaTest with CI/CD](https://www.lambdatest.com/support/docs/integrations-with-ci-cd-tools/?utm_source=github&utm_medium=repo&utm_campaign=LT-appium-rokutv)
 
 ## Documentation & Resources :books:
